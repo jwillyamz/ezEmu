@@ -1,6 +1,6 @@
 # ezEmu
 
-ezEmu enables users to test adversary behaviors via various execution techniques. Sort of like a "*offensive framework for blue teamers*", ezEmu does not have any networking/C2 capabilities and rather focuses on creating local test telemetry.
+ezEmu enables users to test adversary behaviors via various execution techniques. Sort of like an "*offensive framework for blue teamers*", ezEmu does not have any networking/C2 capabilities and rather focuses on creating local test telemetry.
 
 ezEmu is compiled as `parent.exe` to simplify process trees, and will track (and also kill) child processes to enable easy searches in logs/dashboards.
 
