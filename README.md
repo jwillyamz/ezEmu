@@ -36,4 +36,4 @@ ____
 
 
 
-<!--©2020 The MITRE Corporation. ALL RIGHTS RESERVED. Approved for public release. Distribution unlimited 20--1357. The author's affiliation with The MITRE Corporation is provided for identification purposes only, and is not intended to convey or imply MITRE's concurrence with, or support for, the positions, opinions or view points expressed by the author.-->
+©2020 The MITRE Corporation. ALL RIGHTS RESERVED. Approved for public release. Distribution unlimited 20--1357. The author's affiliation with The MITRE Corporation is provided for identification purposes only, and is not intended to convey or imply MITRE's concurrence with, or support for, the positions, opinions or view points expressed by the author.
