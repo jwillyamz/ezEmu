@@ -28,7 +28,7 @@ Compile with reference to a local PowerShell DLL
 
 ## Feedback/Contribute
 
-This started just simple personal research/putzing and is definitely not intended to be "clean code" (this is very much Jamie-code™️). That said, I am happy to accept issues and further suggestions!
+This started as just simple personal research/putzing and is definitely not intended to be "clean code" (this is very much Jamie-code™️). That said, I am happy to accept issues and further suggestions!
 
 **TODO:** Log output file, more CTI + learning >> more execution techniques 
 
