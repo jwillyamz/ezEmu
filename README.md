@@ -16,6 +16,9 @@ Current execution techniques include:
 - *Windows Script Host (T1059.005)*
 - *Windows Fiber*
 - *WMIC XSL Script/Squiblytwo (T1220)*
+- *Microsoft Word Macro (T1059.005)*
+
+**Note:** You need to enable some macro related trust center settings for the Word stuffz to work - https://support.office.com/en-us/article/enable-or-disable-macros-in-office-files-12b036fd-d140-4e74-b45e-16fed1a7e5c6
 
 ## Usage/Demo
 
@@ -23,14 +26,14 @@ ezEmu is an interactive terminal application and works much better if you run fr
 
 ![ezEmu Demo](ezEmu.gif)
 
-Compile with reference to a local PowerShell DLL 
-(ex: `csc /reference:system.management.automation.dll parent.cs`)
+Compile with reference to a few local DLL dependencies
+(ex: `csc /r:Microsoft.Office.Interop.Word.dll,Microsoft.Vbe.Interop.dll,System.Management.Automation.dll parent.cs`)
 
 ## Feedback/Contribute
 
 This started as just simple personal research/putzing and is definitely not intended to be "clean code" (this is very much Jamie-code™️). That said, I am happy to accept issues and further suggestions!
 
-**TODO:** Log output file, more CTI + learning >> more execution techniques 
+**TODO:** Log output file (*perhaps*), more CTI + learning >> more execution techniques (**always**)
 
 ____
 
