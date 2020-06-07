@@ -27,6 +27,7 @@ ezEmu is an interactive terminal application and works much better if you run fr
 ![ezEmu Demo](ezEmu.gif)
 
 Compile with reference to a few local DLL dependencies
+
 (ex: `csc /r:Microsoft.Office.Interop.Word.dll,Microsoft.Vbe.Interop.dll,System.Management.Automation.dll parent.cs`)
 
 ## Feedback/Contribute
