@@ -48,7 +48,7 @@ class Parent {
 		while (exit == false) {
 			Console.Clear();
 			Console.WriteLine("\n===== y emu hard? =====\n");
-			Console.Write("\t[1] cmd.exe /c (T1059.003)\n\t[2] powershell - c (T1059.001)\n\t[3] Unmanaged PowerShell aka PS w/o PowerShell.exe (T1059.001)\n\t[4] CreateProcess() API (T1106)\n\t[5] WinExec() API (T1106)\n\t[6] ShellExecute (T1106)\n\t[7] Windows Management Instrumentation (T1047)\n\t[8] Windows Script Host (T1059.005)\n\t[9] Windows Fiber (research-based)\n\t[10] WMIC XSL Script/Squiblytwo (T1220)\n\t[11] Microsoft Word Macro (T1059.005)\n\nSelect an execution procedure (or exit): ");
+			Console.Write("\t[1] cmd.exe /c (T1059.003)\n\t[2] powershell - c (T1059.001)\n\t[3] Unmanaged PowerShell aka PS w/o PowerShell.exe (T1059.001)\n\t[4] CreateProcess() API (T1106)\n\t[5] WinExec() API (T1106)\n\t[6] ShellExecute (T1106)\n\t[7] Windows Management Instrumentation (T1047)\n\t[8] VBScript (T1059.005)\n\t[9] Windows Fiber (research-based)\n\t[10] WMIC XSL Script/Squiblytwo (T1220)\n\t[11] Microsoft Word VBA Macro (T1059)\n\t[12] Python (T1059.006)\n\nSelect an execution procedure (or exit): ");
 			string exec = Console.ReadLine().ToLower();
 			switch (exec) {
 				case "1":
@@ -411,7 +411,7 @@ class Parent {
 					bool wscript = true;
 					while (wscript) {
 						Console.Clear();
-						Console.WriteLine("\n===== Windows Script Engine execution =====\n");
+						Console.WriteLine("\n===== VBScript execution =====\n");
 						Console.Write("I'll build a vbs file for you (you're welcome),\n\tbut I WILL NOT sanitize input (so play nice unless you know what you're doing)\n\tI need a full command and args (or back): ");
 						string command = Console.ReadLine().ToLower();
 						if (command == "back") {
@@ -534,7 +534,7 @@ class Parent {
 					bool wordz = true;
 					while (wordz) {
 						Console.Clear();
-						Console.WriteLine("\n===== Microsoft Word Macro =====\n");
+						Console.WriteLine("\n===== Microsoft Word VBA Macro =====\n");
 						Console.Write("I'll build a doc file for you (you're welcome),\n\tbut I WILL NOT sanitize input (so play nice unless you know what you're doing)\n\tI need a full command and args (or back): ");
 						string command = Console.ReadLine().ToLower();
 						if (command == "back") {
@@ -612,6 +612,48 @@ class Parent {
 					Console.Clear();
 					Console.WriteLine("\n===== try to play nice... =====\n");
 					break;
+				case "12":
+					bool python = true;
+					while (python) {
+						Console.Clear();
+						Console.WriteLine("\n===== python.exe execution =====\n");
+						Console.Write("please provide the cmd.exe command you want to execute via python.exe (or back): ");
+						string command = Console.ReadLine().ToLower();
+						if (command == "back") {
+							Console.Clear();
+							Console.WriteLine("===== \"Snakes are only cool if they are eating their own tail.\" --Yours Truly =====");
+							Thread.Sleep(3000);
+							python = false;
+						}//end if
+						else {
+							Console.Write("\nAre you sure you want to execute:\n\t " + command + " via python.exe\n\n[y/n/q]? ");
+							string confirm = Console.ReadLine().ToLower();
+							switch (confirm) {
+								case "y":
+									Console.Clear();
+									Console.WriteLine("Executing " + command + " via python.exe\n");
+									command = "\"import os;os.system(\'" + command + "\')\"";
+									Console.Write(command);
+									cliExec("python", command);
+									Console.Write("\nPress enter to continue ");
+									Console.ReadLine();
+									break;
+								case "n":
+									break;
+								case "q":
+									Console.Clear();
+									Console.WriteLine("===== I'm not a big fan of python either... =====");
+									Thread.Sleep(3000);
+									python = false;
+									break;
+								default:
+									Console.WriteLine("\nNot everyone can color inside the lines...");
+									Thread.Sleep(3000);
+									break;
+							}//end swtich
+						}//end else
+					}//end while
+					break;
 			}//end switch
 		}//end while
 	}//end Main
@@ -644,6 +686,10 @@ class Parent {
 					sw.WriteLine("<?xml version='1.0'?><stylesheet xmlns=\"http://www.w3.org/1999/XSL/Transform\" xmlns:ms=\"urn:schemas-microsoft-com:xslt\" xmlns:user=\"placeholder\" version=\"1.0\"> <output method=\"text\"/><ms:script implements-prefix=\"user\" language=\"JScript\"><![CDATA[	var r = new ActiveXObject(\"WScript.Shell\").Run(\"" + args + "\");	]]> </ms:script></stylesheet>");
 				}//end using
 			}//end if
+		}//end else if
+		else if (cli == "python") {
+			process.StartInfo.FileName = "python.exe";
+			process.StartInfo.Arguments = "-c " + args;
 		}//end else if
 		process.StartInfo.RedirectStandardOutput = true;
 		process.StartInfo.RedirectStandardError = true;
