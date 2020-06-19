@@ -13,12 +13,13 @@ Current execution techniques include:
 - *WinExec() API (T1106)*
 - *ShellExecute (T1106)*
 - *Windows Management Instrumentation (T1047)*
-- *Windows Script Host (T1059.005)*
+- *VBScript (T1059.005)*
 - *Windows Fiber*
 - *WMIC XSL Script/Squiblytwo (T1220)*
-- *Microsoft Word Macro (T1059.005)*
+- *Microsoft Word VBA Macro (T1059)*
+- *Python (T1059.006)*
 
-**Note:** You need to enable some macro related trust center settings for the Word stuffz to work - https://support.office.com/en-us/article/enable-or-disable-macros-in-office-files-12b036fd-d140-4e74-b45e-16fed1a7e5c6
+**Note:** You need to enable some macro related trust center settings for the Word stuffz to work - https://support.office.com/en-us/article/enable-or-disable-macros-in-office-files-12b036fd-d140-4e74-b45e-16fed1a7e5c6. You also need Python installed and the PATH variable to work for #12
 
 ## Usage/Demo
 
