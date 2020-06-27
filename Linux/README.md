@@ -7,6 +7,7 @@ ezEmu is compiled as `parent` to simplify process trees, and will track (and als
 Current execution techniques include:
 
 - *sh via system() (T1059.004)*
+- *Python via popen() (T1059.006)*
 
 ## Usage/Demo
 
