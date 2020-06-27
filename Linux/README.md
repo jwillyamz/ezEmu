@@ -9,6 +9,8 @@ Current execution techniques include:
 - *sh via system() (T1059.004)*
 - *Python via popen() (T1059.006)*
 
+**Note:** You need Python installed and the PATH variable set for #2
+
 ## Usage/Demo
 
 ezEmu is an interactive terminal application and works much better if you run from a terminal
