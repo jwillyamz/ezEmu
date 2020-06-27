@@ -56,7 +56,7 @@ void* trackAndKill() {
 				loopCount = 0;
 		}//end if
 	}//end while
-	printf("Child Processes:\n");
+	printf("\nChild Processes:\n");
 	for (z = 0; z <= i; z++) {
 		printf("%s\n",watchOutput[z]);
 	}//end for
@@ -79,8 +79,8 @@ int main() {
 		clear();
 		input = 0;
 		printf("ezEmu: now with more ELF on the shelf\n\n");
-		printf("We are running as PID:%d\n\n",getpid());
-		printf("\t[1] sh via the system() function (T1059.004)\n\n");
+		printf("We are running as PID: %d\n\n",getpid());
+		printf("\t[1] sh via the system() function (T1059.004)\n\t[2] Python via the popen() function (T1059.006)\n\n");
 		printf("Select an execution procedure (or 0 to exit): ");
 		scanf("%d", &input);
 		getchar();
@@ -96,7 +96,7 @@ int main() {
 						int len = strlen(command);
 						if(command[len-1]=='\n')
    							command[len-1]='\0';
-						printf("\nAre you sure you want to execute %s (y/n)? ", command);
+						printf("\nAre you sure you want to execute %s with sh (y/n)? ", command);
 						confirm = getchar();
 						getchar();
 						if (confirm == 'y') {
@@ -105,6 +105,38 @@ int main() {
 							printf("\nCommand Output:\n\n");
 							pthread_create(&ptidTracker, NULL, &trackAndKill, NULL);
 							system(command);
+							printf("\n\n");
+							pthread_join(ptidTracker, NULL);
+						}//end if
+					}//end if
+					else {
+						loop = false;
+						strcpy(command, "");
+						break;
+					}//end else
+				}//end while
+				break;
+			case 2:
+				while (loop) {
+					clear();
+					printf("Python via the popen() execution\n\n");
+					printf("Enter a command to execute (or quit): ");
+					fgets(command, 256, stdin);
+					if (strcmp(command,"quit\n") != 0) {
+						int len = strlen(command);
+						if(command[len-1]=='\n')
+   							command[len-1]='\0';
+						printf("\nAre you sure you want to execute %s with Python (y/n)? ", command);
+						confirm = getchar();
+						getchar();
+						if (confirm == 'y') {
+							clear();
+							pthread_t ptidTracker;
+							printf("\nCommand Output:\n\n");
+							pthread_create(&ptidTracker, NULL, &trackAndKill, NULL);
+							char pyCommand[256];
+							sprintf(pyCommand,"python -c \"import os;os.system(\'%s\')\"",command);
+							system(pyCommand);
 							printf("\n\n");
 							pthread_join(ptidTracker, NULL);
 						}//end if
