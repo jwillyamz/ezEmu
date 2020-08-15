@@ -80,7 +80,7 @@ int main() {
 		input = 0;
 		printf("ezEmu: now with more ELF on the shelf\n\n");
 		printf("We are running as PID: %d\n\n",getpid());
-		printf("\t[1] sh via the system() function (T1059.004)\n\t[2] Python via the popen() function (T1059.006)\n\n");
+		printf("\t[1] sh via the system() function (T1059.004)\n\t[2] Python via the popen() function (T1059.006)\n\t[3] Perl via the system() function (T1059)\n\n");
 		printf("Select an execution procedure (or 0 to exit): ");
 		scanf("%d", &input);
 		getchar();
@@ -136,7 +136,45 @@ int main() {
 							pthread_create(&ptidTracker, NULL, &trackAndKill, NULL);
 							char pyCommand[256];
 							sprintf(pyCommand,"python -c \"import os;os.system(\'%s\')\"",command);
-							system(pyCommand);
+							FILE *fp;
+							char output[1035];
+							fp = popen(pyCommand, "r");
+							while (fgets(output, sizeof(output), fp) != NULL) {
+								printf("%s", output);
+							}//end while
+							pclose(fp);
+							printf("\n\n");
+							pthread_join(ptidTracker, NULL);
+						}//end if
+					}//end if
+					else {
+						loop = false;
+						strcpy(command, "");
+						break;
+					}//end else
+				}//end while
+				break;
+			case 3:
+				while (loop) {
+					clear();
+					printf("Perl via the system() execution\n\n");
+					printf("Warning: Do not concatenate (&) commands\nEnter a single command to execute (or quit): ");
+					fgets(command, 256, stdin);
+					if (strcmp(command,"quit\n") != 0) {
+						int len = strlen(command);
+						if(command[len-1]=='\n')
+   							command[len-1]='\0';
+						printf("\nAre you sure you want to execute %s with Perl (y/n)? ", command);
+						confirm = getchar();
+						getchar();
+						if (confirm == 'y') {
+							clear();
+							pthread_t ptidTracker;
+							printf("\nCommand Output:\n\n");
+							pthread_create(&ptidTracker, NULL, &trackAndKill, NULL);
+							char plCommand[256];
+      							sprintf(plCommand,"perl -e \"system(\"%s\")\"",command);
+							system(plCommand);
 							printf("\n\n");
 							pthread_join(ptidTracker, NULL);
 						}//end if
