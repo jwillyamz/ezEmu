@@ -10,8 +10,6 @@ Current execution techniques include:
 - *Python via popen() (T1059.006)*
 - *Perl via system() (T1059)*
 
-**Note:** You need Python installed and the PATH variable set for #2
-
 ## Usage/Demo
 
 ezEmu is an interactive terminal application and works much better if you run from a terminal
