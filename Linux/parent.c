@@ -158,7 +158,7 @@ int main() {
 				while (loop) {
 					clear();
 					printf("Perl via the system() execution\n\n");
-					printf("Warning: Do not concatenate (&) commands\nEnter a single command to execute (or quit): ");
+					printf("Enter a file, with no args, to execute (or quit): ");
 					fgets(command, 256, stdin);
 					if (strcmp(command,"quit\n") != 0) {
 						int len = strlen(command);
