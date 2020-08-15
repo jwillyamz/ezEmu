@@ -8,6 +8,7 @@ Current execution techniques include:
 
 - *sh via system() (T1059.004)*
 - *Python via popen() (T1059.006)*
+- *Perl via system() (T1059)*
 
 **Note:** You need Python installed and the PATH variable set for #2
 
