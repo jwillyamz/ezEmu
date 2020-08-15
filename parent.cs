@@ -48,7 +48,7 @@ class Parent {
 		while (exit == false) {
 			Console.Clear();
 			Console.WriteLine("\n===== y emu hard? =====\n");
-			Console.Write("\t[1] cmd.exe /c (T1059.003)\n\t[2] powershell - c (T1059.001)\n\t[3] Unmanaged PowerShell aka PS w/o PowerShell.exe (T1059.001)\n\t[4] CreateProcess() API (T1106)\n\t[5] WinExec() API (T1106)\n\t[6] ShellExecute (T1106)\n\t[7] Windows Management Instrumentation (T1047)\n\t[8] VBScript (T1059.005)\n\t[9] Windows Fiber (research-based)\n\t[10] WMIC XSL Script/Squiblytwo (T1220)\n\t[11] Microsoft Word VBA Macro (T1059)\n\t[12] Python (T1059.006)\n\nSelect an execution procedure (or exit): ");
+			Console.Write("\t[1] cmd.exe /c (T1059.003)\n\t[2] powershell - c (T1059.001)\n\t[3] Unmanaged PowerShell aka PS w/o PowerShell.exe (T1059.001)\n\t[4] CreateProcess() API (T1106)\n\t[5] WinExec() API (T1106)\n\t[6] ShellExecute (T1106)\n\t[7] Windows Management Instrumentation (T1047)\n\t[8] VBScript (T1059.005)\n\t[9] Windows Fiber (research-based)\n\t[10] WMIC XSL Script/Squiblytwo (T1220)\n\t[11] Microsoft Word VBA Macro (T1059.005)\n\t[12] Python (T1059.006)\n\nSelect an execution procedure (or exit): ");
 			string exec = Console.ReadLine().ToLower();
 			switch (exec) {
 				case "1":
