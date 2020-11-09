@@ -46,7 +46,7 @@ ____
 
 ### Notice 
 
-Copyright 2020 The MITRE Corporation
+©2020 The MITRE Corporation. All Rights Reserved.
 
 Approved for Public Release; Distribution Unlimited. Case Number 20-1357.
 
