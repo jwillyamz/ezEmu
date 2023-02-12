@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using Microsoft.Office.Interop.Word;
+//using Microsoft.Office.Interop.Word;
 
 public struct PROCESS_INFORMATION {
 	public IntPtr hProcess;
@@ -552,39 +552,39 @@ class Parent {
 									Console.WriteLine("Executing " + command + " inside a Word macro at " + DateTime.Now.ToString("HH:mm:ss tt") + "\n");
 									Console.WriteLine();
 									//thank you https://github.com/enigma0x3/Generate-Macro
-									Microsoft.Office.Interop.Word.Application winword = new Microsoft.Office.Interop.Word.Application();
-									object missing = System.Reflection.Missing.Value;
-									string VBCode = "Sub AutoOpen()\nEZ\nEnd Sub\nPublic Function EZ() As Variant\nPID = Shell(\"" + command + "\",4)\nEnd Function";
-									try {
-										Microsoft.Office.Interop.Word.Document document = winword.Documents.Add(ref missing, ref missing, ref missing, ref missing);
-										string path = Directory.GetCurrentDirectory() + "\\parent.docm"; 
-										document.SaveAs2(path);
-										Microsoft.Vbe.Interop.VBProject Project = document.VBProject;
-										Microsoft.Vbe.Interop.VBComponent Module = Project.VBComponents.Add(Microsoft.Vbe.Interop.vbext_ComponentType.vbext_ct_StdModule);
-										Microsoft.Vbe.Interop.CodeModule Code = Module.CodeModule;
-										Code.AddFromString(VBCode);
-										Process currentProcess = Process.GetCurrentProcess();
-										Process process = new Process();
-										process.StartInfo.FileName = "winword.exe";
-										process.StartInfo.Arguments = path;
-										process.StartInfo.RedirectStandardOutput = false;
-										process.StartInfo.RedirectStandardError = false;
-										process.StartInfo.UseShellExecute = false;
-										process.Start();
-										Console.WriteLine(process.ProcessName + " started at " + process.StartTime + " as PID " + process.Id);
+									//Microsoft.Office.Interop.Word.Application winword = new Microsoft.Office.Interop.Word.Application();
+									//object missing = System.Reflection.Missing.Value;
+									//string VBCode = "Sub AutoOpen()\nEZ\nEnd Sub\nPublic Function EZ() As Variant\nPID = Shell(\"" + command + "\",4)\nEnd Function";
+									//try {
+										//Microsoft.Office.Interop.Word.Document document = winword.Documents.Add(ref missing, ref missing, ref missing, ref missing);
+										//string path = Directory.GetCurrentDirectory() + "\\parent.docm"; 
+										//document.SaveAs2(path);
+										//Microsoft.Vbe.Interop.VBProject Project = document.VBProject;
+										//Microsoft.Vbe.Interop.VBComponent Module = Project.VBComponents.Add(Microsoft.Vbe.Interop.vbext_ComponentType.vbext_ct_StdModule);
+										//Microsoft.Vbe.Interop.CodeModule Code = Module.CodeModule;
+										//Code.AddFromString(VBCode);
+										//Process currentProcess = Process.GetCurrentProcess();
+										//Process process = new Process();
+										//process.StartInfo.FileName = "winword.exe";
+										//process.StartInfo.Arguments = path;
+										//process.StartInfo.RedirectStandardOutput = false;
+										//process.StartInfo.RedirectStandardError = false;
+										//process.StartInfo.UseShellExecute = false;
+										//process.Start();
+										//Console.WriteLine(process.ProcessName + " started at " + process.StartTime + " as PID " + process.Id);
 										//find real winword.exe
-										Thread.Sleep(1000);
-										Process[] winWordTwo = Process.GetProcessesByName("winword");
-										foreach (Process winPid in winWordTwo) {
-											trackANDkill((int) winPid.Id);
-										}//end foreach
-										Console.Write("\nPress enter to continue ");
-										Console.ReadLine();
-										File.Delete(path);
-									}//end try
-									catch (Exception ex) {
-										Console.Write(ex + "\n\nAlso double check that you have enabled macros and automagic code access (aka trust access to the VBA project object model) for this jazz to work\n\nPeep https://support.office.com/en-us/article/enable-or-disable-macros-in-office-files-12b036fd-d140-4e74-b45e-16fed1a7e5c6 for the good word\n");
-									}//end catch
+										//Thread.Sleep(1000);
+										//Process[] winWordTwo = Process.GetProcessesByName("winword");
+										//foreach (Process winPid in winWordTwo) {
+											//trackANDkill((int) winPid.Id);
+										//}//end foreach
+										//Console.Write("\nPress enter to continue ");
+										//Console.ReadLine();
+										//File.Delete(path);
+									//}//end try
+									//catch (Exception ex) {
+										//Console.Write(ex + "\n\nAlso double check that you have enabled macros and automagic code access (aka trust access to the VBA project object model) for this jazz to work\n\nPeep https://support.office.com/en-us/article/enable-or-disable-macros-in-office-files-12b036fd-d140-4e74-b45e-16fed1a7e5c6 for the good word\n");
+									//}//end catch
 									break;
 								case "n":
 									break;
